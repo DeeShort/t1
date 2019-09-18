@@ -2,11 +2,13 @@
 require_once("..//classes/dbclass.php");
 if($_GET["ID"]>0){
     $db=new dbclass();
-    $werte=$db->getraumdaten($_GET["ID"]);
+    $werte=$db->getkursdaten($_GET["ID"]);
 } else {
     $werte["Bezeichnung"]="";
+    $werte["TrainerID"]="";
     $werte["Kapazitat"]="";
-    $werte["Menge"]="";
+    $werte["Dauer"]="";
+    $werte["Preis"]="";
 }
 ?>
 
@@ -25,22 +27,28 @@ if($_GET["ID"]>0){
     <body>
         <div align="center">
             
-           <?php if($_GET["ID"]>0){echo "<h2>Andern eines Raumes</h2>";}else{echo "<h2>Neuen Raum anlegen</h2>";} ?>
+           <?php if($_GET["ID"]>0){echo "<h2>Andern eines Kurses</h2>";}else{echo "<h2>Neuen Kurs anlegen</h2>";} ?>
             
-            <form action="editraum.php" method="POST">
+            <form action="editkurs.php" method="POST">
                 <input type="hidden" value="<?php echo $_GET["ID"]; ?>" name="rid">
                 <table width="90%" border="1">
                     <tr>
                     <th>Bezeichnung</th><td><input type="text" name="bezeichnung" value="<?php  echo $werte["Bezeichnung"];?>"></td>
                     </tr>                    
                     <tr>
-                    <th>Kapazitat</th><td><input type="text" name="kapazitat" value="<?php echo $werte["Kapazitat"];?>"></td>
+                    <th>TrainerID</th><td><input type="text" name="trainerid" value="<?php echo $werte["TrainerID"];?>"></td>
                     </tr>
                     <tr>
-                    <th>Menge</th><td><input type="text" name="menge" value="<?php  echo $werte["Menge"];?>"></td>
+                    <th>Kapazitat</th><td><input type="text" name="kapazitat" value="<?php  echo $werte["Kapazitat"];?>"></td>
+                    </tr>
+                     <tr>
+                    <th>Dauer</th><td><input type="text" name="dauer" value="<?php  echo $werte["Dauer"];?>"></td>
+                    </tr>
+                     <tr>
+                    <th>Preis</th><td><input type="text" name="preis" value="<?php  echo $werte["Preis"];?>"></td>
                     </tr>
                      <tr>                   
-                    <td><input type="submit" formaction="raumliste.php" value="Abbrechen"></td>
+                    <td><input type="submit" formaction="kursliste.php" value="Abbrechen"></td>
                     <td><input type="submit" value="Speichern"></td>
                     </tr>
                 </table>

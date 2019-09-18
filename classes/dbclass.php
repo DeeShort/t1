@@ -173,7 +173,31 @@ class dbclass
             $ergebnis=$this->pdo->query($sql);
         }
                 
+        public function displayallekurse(){
+            $sql="select KursID,Bezeichnung,TrainerID,Kapazitat,Dauer,Preis from kurs order by Bezeichnung asc";
+            $ergebnis=$this->pdo->query($sql);
+            return $ergebnis->fetchAll(); 
+        }
            
+        public function getkursdaten($kursid) {
+            $sql="select * from kurs where KursID=".$kursid;
+            $ergebnis=$this->pdo->query($sql);
+            return $ergebnis->fetch();  
+            return $zeile;
+        }
+        
+         public function editkurs($wurst) {
+            $sql ="update kurs set Bezeichnung=?,TrainerID=?,Kapazitat=?,Dauer=?,Preis=? where KursID=?";
+            $ergebnis=$this->pdo->prepare($sql);
+            $ergebnis->execute(array($wurst["bezeichnung"],$wurst["trainerid"],$wurst["kapazitat"],$wurst["dauer"],$wurst["preis"],$wurst["rid"]));
+        }
+        
+        public function insertkurs($wurst) {
+                $sql="insert into kurs(Bezeichnung,TrainerID,Kapazitat,Dauer,Preis) values (?,?,?,?,?)";
+		$ergebnis= $this->pdo->prepare($sql);
+		$ergebnis->execute(array($wurst["bezeichnung"],$wurst["trainerid"],$wurst["kapazitat"],$wurst["dauer"],$wurst["preis"]));
+        }
+        
         
 }
 

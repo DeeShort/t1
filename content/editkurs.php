@@ -4,10 +4,10 @@ require_once("..//classes/dbclass.php");
 $db = new dbclass();
 
 if($_POST["rid"]>0){
-    $db->editraum($_POST);
+    $db->editkurs($_POST);
 }else{
-    $db->insertraum($_POST);
+    $db->insertkurs($_POST);
 }
     
-header("Location:raumliste.php");
+header("Location:kursliste.php");
 
