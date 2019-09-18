@@ -29,17 +29,17 @@ tr:nth-child(odd) {background-color: #ffffff;}
 
 <body>
 
-    <div class="w3-container" style="margin: 20px;">
+    <div class="w3-container">
   <h2>Ultimative Terminplanung</h2>
   
-  <div class="w3-bar w3-light-grey" style="width:100%;">
+  <div class="w3-bar w3-light-grey" style="width:100%;margin-bottom: 25px;">
     <a href="contents.php" class="w3-bar-item w3-button">Home</a>
     <a href="#" class="w3-bar-item w3-button">Programminfos</a>
 
 	<div class="w3-dropdown-hover">
       <button class="w3-button">Kursverwaltung</button>
       <div class="w3-dropdown-content w3-card-4">
-        <a href="kursneu.php" class="w3-bar-item w3-button">Neuer Kurs</a>
+        <a href="updatekurs.php?ID=0" class="w3-bar-item w3-button">Neuer Kurs</a>
         <a href="kursliste.php" class="w3-bar-item w3-button">Kursliste</a>
       </div>
     </div>
@@ -55,7 +55,13 @@ tr:nth-child(odd) {background-color: #ffffff;}
       <div class="w3-dropdown-content w3-card-4">
         <a href="raumliste.php" class="w3-bar-item w3-button">Raumverwaltung</a>
         <a href="equipliste.php" class="w3-bar-item w3-button">Equipmentverwaltung</a>
-      </div>
+      </div>      
     </div>
+     <div class="w3-dropdown-hover">
+      <button class="w3-button">Terminverwaltung</button>
+      <div class="w3-dropdown-content w3-card-4">
+        <a href="terminliste.php" class="w3-bar-item w3-button">Termineliste</a>
+        <a href="neutermine.php" class="w3-bar-item w3-button">Neu Termin</a>
+      </div>
   </div>
 </div>
