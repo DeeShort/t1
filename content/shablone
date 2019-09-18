@@ -1,0 +1,13 @@
+<?php
+require_once("..//classes/dbclass.php");
+
+?>
+<html>
+    <head>
+        <meta charset="utf8"
+    </head>
+    <body>
+        
+    </body>
+</html>
+
