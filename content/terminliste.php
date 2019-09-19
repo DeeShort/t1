@@ -14,30 +14,31 @@ require_once '../classes/dbclass.php';
     <div align="center"> 
         
         <table width="90%" border="1">
-            <td colspan="7">
-                 <input type="button" value="Neuen Equipment anlegen" onclick="window.location.href='updateequip.php?ID=0'">
-            </td>
             <tr>
             <th>                Bearbeiten            </th>
             <th>                Loschen            </th>
-            <th>                InventarID            </th>
-            <th>                Bezeichnung            </th>
-            <th>                Menge            </th>
-            <th>                Verfugbarkeit            </th>            
+            <th>                TerminID            </th>
+            <th>                RaumID            </th>
+            <th>                Benutzer           </th>
+            <th>                Kurs            </th> 
+            <th>                AnfangDatum           </th>
+            <th>                EndDatum           </th>
+            <th>                Trainer           </th>
+            <th>                Inventar           </th>             
             </tr>            
             <?php
             $db=new dbclass();
-            $werte = $db->displayallequip();            
+            $werte = $db->displayalletermine();            
             foreach($werte as $inhalt){
                 echo"<tr>";
                 ?>
-            <form action="equipbearbeiten.php" method="POST">
+            <form action="terminbearbeiten.php" method="POST">
                 <td><input type="submit" name="but" value="Bearbeiten"></td>
                 <td><input type="submit" name="but" value="Loschen"></td>
-            <input type="hidden" name="equipid" value="<?php echo $inhalt[0];?>">
+            <input type="hidden" name="terminid" value="<?php echo $inhalt[0];?>">
             </form>
                    <?php
-                for($i=0;$i<=3;$i++){
+                for($i=0;$i<=7;$i++){
                     echo "<td>".$inhalt[$i]."</td>";                   
                 }
                 echo"</tr>";

@@ -4,11 +4,11 @@ require_once '../classes/dbclass.php';
 
 if (isset($_POST)){
     if($_POST["but"]=="Bearbeiten"){
-        header("Location:updateequip.php?ID=".$_POST["equipid"]);
+        header("Location:updatetermin.php?ID=".$_POST["terminid"]);
        
     } else {
         $db =new dbclass();
-        $db->deleteequip($_POST["equipid"]);
-        header("Location:equipliste.php");
+        $db->deletetermin($_POST["terminid"]);
+        header("Location:terminliste.php");
     }
 }

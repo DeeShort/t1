@@ -199,6 +199,35 @@ class dbclass
         }
         
         
+        public function displayalletermine(){
+            $sql="select t.TerminID,r.RaumID,concat(b.Name,' ',b.Nachname),k.Bezeichnung, date_format(t.AnfangDatum,'%d.%m.%Y'),date_format(DATE_ADD(t.AnfangDatum,INTERVAL k.Dauer DAY), '%d.%m.%Y'), concat(b.Name,' ',b.Nachname),e.Bezeichnung
+                    from termin as t, benutzer as b,kurs as k, raume as r, inventar as e
+                    where (b.BenutzerID=t.BenutzerID
+                    and t.KursID=k.KursID
+                    and r.RaumID=t.RaumID
+                    and e.InventarID=t.InventarID)";
+            $ergebnis=$this->pdo->query($sql);
+            return $ergebnis->fetchAll();  
+            
+        }
+        
+        public function deletetermin($terminid) {
+            $sql ="DELETE FROM termin WHERE TerminID=".$terminid;
+            $ergebnis=$this->pdo->query($sql);
+        }
+        
+        public function updatetermin($wurst) {
+            $sql ="update kurs set Bezeichnung=?,TrainerID=?,Kapazitat=?,Dauer=?,Preis=? where KursID=?";
+            $ergebnis=$this->pdo->prepare($sql);
+            $ergebnis->execute(array($wurst["bezeichnung"],$wurst["trainerid"],$wurst["kapazitat"],$wurst["dauer"],$wurst["preis"],$wurst["rid"]));
+        }
+       
+        public function displayAlleTrainer(){
+            $sql="select b.benutzerID, r.Rolle, b.Anrede, b.Name, b.Nachname, b.PLZ, b.Ort, b.Email,b.telephone,b.login,b.Password from benutzer as b join rollen as r on  b.rolleID=r.rolleID where r.RolleID=7";
+            $ergebnis=$this->pdo->query($sql);
+            return $ergebnis->fetchAll();  
+        }
+        
 }
 
 
