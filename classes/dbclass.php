@@ -228,6 +228,12 @@ class dbclass
             return $ergebnis->fetchAll();  
         }
         
+        public function insertTermin($kursid,$trainerid,$start,$raumid,$inventarid) {
+            $sql="insert into termin(RaumID, BenutzerID,KursID,AnfangDatum,InventarID)";
+            $ergebnis=$this->pdo->prepare($sql);
+            $ergebnis->execute(array($raumid, $trainer, $kurs, $start,$inventarid));
+        }
+       
 }
 
 

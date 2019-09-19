@@ -9,13 +9,43 @@ require_once("..//classes/dbclass.php");
         <script>
            function rechneEndDatum(datum,dauer)
  {
+     var da=dauer.split("-"); //delit na slova po minusu
+//     da[0]=KursID;
+//     da[1]=Dauer
    var neu = new Date(datum.value);
-   neu.setDate(neu.getDate()+parseInt(dauer));
+   neu.setDate(neu.getDate()+parseInt(da[1]));
    d = neu.getDate();
    m = neu.getMonth()+1;
+   if(m<10){ m="0"+"1";}
    y = neu.getFullYear();
    document.ntermin.ende.value=d+"."+m+"."+y;
  }
+           function checkFormular(){
+               if(document.ntermin.kurs.selectedIndex=="0"){
+                   alert("Bitte den Kurs auswahlen!");
+                   document.ntermin.kurs.focus();
+                   return false;}
+               else if (document.ntermin.trainer.selectedIndex=="0"){
+                   alert("Bitte den Trainer auswahlen!");
+                   document.ntermin.trainer.focus();
+                   return false;}
+               else if (document.ntermin.end.value==""){
+                   alert("Bitte den Startdatum auswahlen!");
+                   document.ntermin.start.focus();
+                   return false;}
+               else if (document.ntermin.raum.selectedIndex=="0"){
+                   alert("Bitte den Raum auswahlen!");
+                   document.ntermin.raum.focus();
+                   return false;}
+               else if (document.ntermin.equip.selectedIndex=="0"){
+                   alert("Bitte den Inventar auswahlen!");
+                   document.ntermin.equip.focus();
+                   return false;}
+               else if (document.ntermin.user.selectedIndex=="0"){
+                   alert("Bitte den User auswahlen!");
+                   document.ntermin.user.focus();
+                   return false;}
+           }
         </script>
     </head>
     <body>
@@ -24,18 +54,21 @@ require_once("..//classes/dbclass.php");
             ?>
         <h2>Neuen Termin anlegen</h2>
         <hr>
-        <form action="" method="POST" name="ntermin">
-            <table width="50%" border="1">
+        <div style="width:40%;">
+            
+            
+        <form action="terminspeichern.php" method="POST" name="ntermin" onsubmit="return checkFormular();">
+            <table class="tablex">
                 <tr>
                 <th>Kurs</th>
                         <td>
-                            <select style="width:550px" id="kursname" name="kurs">
+                            <select style="width:350px" id="kursname" name="kurs">
                                 <option selected disabled>Select</option>
                                    <?php
                                    $db=new dbclass();                                  
                                    $ergebnis=$db->displayallekurse();                                  
                                    foreach($ergebnis as $zeile){
-                                   echo"<option value ='".$zeile[4]."'>".$zeile[1];                                 
+                                   echo"<option value ='".$zeile[0]."-".$zeile[4]."'>".$zeile[1];                                 
                                    }
                                    ?>
                             </select>
@@ -44,13 +77,14 @@ require_once("..//classes/dbclass.php");
             <tr>
                  <th>Trainer</th>
                       <td>
-                            <select style="width:550px" name="trainer">
+                            <select style="width:350px" name="trainer">
                                 <option selected disabled>Select</option>
                                    <?php
                                    $db=new dbclass();                                  
                                    $ergebnis=$db->displayAlleTrainer();                                  
                                    foreach($ergebnis as $zeile){
                                        echo"<option value ='".$zeile[0]."'>".$zeile[2]." ".$zeile[3];
+                                       
                                    }
                                    ?>
                             </select>
@@ -67,7 +101,7 @@ require_once("..//classes/dbclass.php");
              <tr>
                  <th>Raum</th>
                         <td>
-                            <select style="width:550px" name="raum">
+                            <select style="width:350px" name="raum">
                                 <option selected disabled>Select</option>
                                    <?php
                                    $db=new dbclass();                                  
@@ -82,7 +116,7 @@ require_once("..//classes/dbclass.php");
               <tr>
                  <th>Inventar</th>
                         <td>
-                            <select style="width:550px" name="equip">
+                            <select style="width:350px" name="equip">
                                 <option selected disabled>Select</option>
                                    <?php
                                    $db=new dbclass();                                  
@@ -97,7 +131,7 @@ require_once("..//classes/dbclass.php");
              <tr>
                  <th>Benutzer</th>
                       <td>
-                            <select style="width:550px" name="user">
+                            <select style="width:350px" name="user">
                                 <option selected disabled>Select</option>
                                    <?php
                                    $db=new dbclass();                                  
@@ -109,9 +143,13 @@ require_once("..//classes/dbclass.php");
                             </select>
                       </td>    
              </tr>
+             <tr>                   
+                    <td><input type="submit" formaction="raumliste.php" value="Abbrechen"></td>
+                    <td><input type="submit" value="Speichern"></td>
+             </tr>
             </table>
         </form>
-        
+       </div>
         
     </body>
 </html>

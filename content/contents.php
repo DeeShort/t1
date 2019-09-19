@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
     <style>
+        .tablex{
+           border:5px solid grey; 
+           box-shadow:15px 10px 18px #888888;
+        }
         body {
   background-image: url("../images/termin.jpg");
   background-repeat: no-repeat;

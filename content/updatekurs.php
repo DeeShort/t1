@@ -31,7 +31,7 @@ if($_GET["ID"]>0){
             
             <form action="editkurs.php" method="POST">
                 <input type="hidden" value="<?php echo $_GET["ID"]; ?>" name="rid">
-                <table width="90%" border="1">
+                <table class="tablex" width="90%">
                     <tr>
                     <th>Bezeichnung</th><td><input type="text" name="bezeichnung" value="<?php  echo $werte["Bezeichnung"];?>"></td>
                     </tr>                    

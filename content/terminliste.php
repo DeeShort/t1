@@ -13,7 +13,7 @@ require_once '../classes/dbclass.php';
     <br>    
     <div align="center"> 
         
-        <table width="90%" border="1">
+        <table class="tablex" width="90%">
             <tr>
             <th>                Bearbeiten            </th>
             <th>                Loschen            </th>
