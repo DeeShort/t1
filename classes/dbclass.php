@@ -229,7 +229,7 @@ class dbclass
         }
         
         public function insertTermin($kursid,$trainerid,$start,$raumid,$inventarid) {
-            $sql="insert into termin(RaumID, BenutzerID,KursID,AnfangDatum,InventarID)";
+            $sql="insert into termin(RaumID, BenutzerID,KursID,AnfangDatum,InventarID) values (?,?,?,?,?)";
             $ergebnis=$this->pdo->prepare($sql);
             $ergebnis->execute(array($raumid, $trainer, $kurs, $start,$inventarid));
         }
